@@ -4,18 +4,23 @@ import random
 st.set_page_config(page_title="Teste de página")
 st.write("Minha primeira página com Streamlit!")
 st.write("---")
-st.title("Criando um gerador de números aleatórios")
-st.write("Será gerado um número de 1 até o valor digitiado pelo usuário")
+st.title("Criando um gerador de números")
 
-st.header("Digite um número")
-campo_texto = st.text_input("")
+#Campos de texto para pedir os valores
+quantidade_numero = st.text_input("Quantidade de número", "")
+do_numero = st.text_input("Do número", "")
+ate_numero = st.text_input("Até o número", "")
 
-st.write(f"O número digititado foi {campo_texto}")
+#Gerando valores
+def gerador_numeros():
+    gerar = random.randint(int(do_numero), int(ate_numero))
+    return gerar
 
-def gerarNumeroAleatorio():
-    x = random.randint(1, int(campo_texto))
-    return x
+#botões do jogo
+if st.button("Sortear"):
+    st.write(gerador_numeros())
 
-st.header("Botão")
-if st.button("clique aqui"):
-    st.write(f"Número gerado foi {gerarNumeroAleatorio()}")
+def texto_final():
+    st.write("Números sorteados: nenhum até agora")
+
+texto_final()
